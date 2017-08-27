@@ -1,0 +1,6 @@
+.hg/*
+.idea/*
+/.hgignore
+/config.json
+/currenttoken.json
+result_*.json
