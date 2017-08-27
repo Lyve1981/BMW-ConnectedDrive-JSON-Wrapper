@@ -1,11 +1,12 @@
 <h1>BMW ConnectedDrive API Wrapper</h1>
 
-This is a small node.js program that wraps the authentication mechanisms needed to access the BMW ConnectedDrive Portal servers.
+This is a small node.js program that wraps the authentication mechanisms needed to access 
+the BMW ConnectedDrive Portal servers and returns json data for each vehicle.
  
  It supports:
- * writejson.js - Writes data for all vehicles to json files, one per vehicle
- * server.js - Is a small web server that returns json data for each vehicle identified by the VIN
- 
+ * writejson.js - Writes data for all vehicles to json files, one file per vehicle
+ * server.js - Is a small web server that returns json data for each vehicle identified by the VIN upon request
+
 __Prerequisites__
 
 * Install node.js
