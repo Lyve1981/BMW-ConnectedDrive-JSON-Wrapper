@@ -17,26 +17,24 @@ __Prerequisites__
 
 __Writing JSON Files__
 
-* Execute the following command:
+* Execute the following command:      
+`node writejson.js`
+    
 
-    
-    node writejson.js
-    
 The program writes json files in form result_VIN.json where _VIN_ is your Vehicle Identification Number
 in the form WBAxxxxxxxV123456
 
 __Starting the Web Server__
 
 * Execute the following command:
+`node server.js`
 
-
-    node server.js
-
+    
 The server listens for incoming connections on port 8777 by default, feel free to edit if needed
 
 Requests should be made in the following form:
 
-    http://myserver:port/VIN[?refresh]
+`http://myserver:port/VIN[?refresh]`
 
 * _VIN_ is your vehicle identification number in the form WBAxxxxxxxV123456
 
