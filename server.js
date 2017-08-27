@@ -14,6 +14,8 @@ var http = require("http");
 var url = require('url');
 var fs = require('fs');
 
+const g_serverListenPort = 8777;
+
 var vehicle = require('./vehicle.js');
 
 http.createServer(function (req, res)
@@ -53,4 +55,4 @@ http.createServer(function (req, res)
         }
     })
 
-}).listen(8777);
+}).listen(g_serverListenPort);
