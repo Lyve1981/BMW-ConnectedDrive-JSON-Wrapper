@@ -46,13 +46,13 @@ function requestVehicle(_rootData, _vehicleDataCallback, _error)
     https://www.bmw-connecteddrive.de/api/vehicle/servicepartner/v1/vin
     */
 
-    requestVehicleData('service', 'service');
-    requestVehicleData('specs', 'service');
-    requestVehicleData('dynamic', 'dynamic');
-    requestVehicleData('navigation', 'navigation');
-    requestVehicleData('remoteservices/chargingprofile', 'chargingprofile');
-    requestVehicleData('servicepartner', 'servicepartner');
-    requestVehicleData('efficiency', 'efficiency');
+    requestVehicleData('service', 'service', '');
+//  requestVehicleData('specs', 'service', '');
+    requestVehicleData('dynamic', 'dynamic', '?offset=-120');
+    requestVehicleData('navigation', 'navigation', '');
+    requestVehicleData('remoteservices/chargingprofile', 'chargingprofile', '');
+//  requestVehicleData('servicepartner', 'servicepartner', '');
+    requestVehicleData('efficiency', 'efficiency', '');
 }
 
 function requestVehicles (_vehicleDataCallback, _success, _error)
