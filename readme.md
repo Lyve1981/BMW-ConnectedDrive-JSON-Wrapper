@@ -11,7 +11,7 @@ __Prerequisites__
 
 * Install node.js
 
-* Edit the file config.json and enter your credentials:
+* Rename/copy config_example.json to config.json and enter your credentials:
 
     * *username* needs to be the Mail Address that you used when registering your BMW ConnectedDrive account
     * *password* Your password
@@ -38,3 +38,13 @@ Requests should be made in the following form:
 `http://myserver:port/VIN`
 
 * _VIN_ is your vehicle identification number in the form WBAxxxxxxxV123456
+
+__Actions__
+
+* You can now initiate commands by using the provided action_xxx json files
+
+    * *action_climate.js* Turn on air condition. The car will climate according to your last settings
+    * *action_doorlock.js* Lock all doors
+    * *action_doorunlock.js* Unlock doors. *Use with caution!*
+    * *action_flashheadlights.js* Flash your headlights
+    * *action_soundhorn.js* Trigger your horn
