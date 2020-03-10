@@ -18,23 +18,6 @@ const g_serverListenPort = 8777;
 
 var vehicle = require('./vehicle.js');
 
-function writeResponse(res, _vin)
-{
-    fs.readFile('result_' + _vin + '.json', 'utf8', function(_err, _data)
-    {
-        if(_err)
-        {
-            res.writeHead(404, {'Content-Type': 'text/plain'});
-            res.end("Failed to open file " + _vin + ": " + _err);
-        }
-        else
-        {
-            res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'});
-            res.end(_data);
-        }
-    })
-}
-
 http.createServer(function (req, res)
 {
     var requestUrl = url.parse(req.url);
@@ -43,22 +26,16 @@ http.createServer(function (req, res)
 
     var vin = path.substring(1);
 
-    if(search === '?refresh')
+	vehicle.requestVehicles(function(_vin, _data)
     {
-        console.log("Requesting new data from BMW ConnectedDrive API server");
-
-        vehicle.writeAllVehiclesData(function()
-        {
-            writeResponse(res, vin);
-        }, function(err)
-        {
-            res.writeHead(500, {'Content-Type': 'text/plain'});
-            res.end('Request Error: ' + err);
-        });
-    }
-    else
-    {
-        console.log("Returning cached version of data for VIN " + vin);
-        writeResponse(res, vin);
-    }
+		res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'});
+		res.end(JSON.stringify(_data));
+	}, function(_success)
+	{
+	}, function(err)
+	{
+		console.log("Error: " + err);
+		res.writeHead(500, {'Content-Type': 'text/plain'});
+		res.end('Request Error: ' + err);
+	});
 }).listen(g_serverListenPort);
