@@ -35,9 +35,6 @@ The server listens for incoming connections on port 8777 by default, feel free t
 
 Requests should be made in the following form:
 
-`http://myserver:port/VIN[?refresh]`
+`http://myserver:port/VIN`
 
 * _VIN_ is your vehicle identification number in the form WBAxxxxxxxV123456
-
-* _?refresh_ is an optional parameter. If set, fresh data is download from the BMW servers. If left out, 
-a cached copy from stored JSON files is returned instead
