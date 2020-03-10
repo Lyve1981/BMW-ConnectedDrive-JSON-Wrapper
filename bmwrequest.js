@@ -9,10 +9,10 @@ exports.call = function(_host, _path, _postData, _callbackSuccess, _callbackErro
 		hostname: _host,
 		port: '443',
 		path: _path,
-		method: hasToken ? 'GET' : 'POST',
+		method: _postData != null ? 'POST' : 'GET',
 		headers: {
 			'Content-Type': 'application/x-www-form-urlencoded',
-			'Content-Length': Buffer.byteLength(_postData)
+			'Content-Length': _postData != null ? Buffer.byteLength(_postData) : 0
         }
 	};
 
@@ -25,7 +25,9 @@ exports.call = function(_host, _path, _postData, _callbackSuccess, _callbackErro
 
 	const req = https.request(options, function(res)
     {
-//		console.log('STATUS: ' + res.statusCode);
+		if(res.statusCode >= 400 && res.statusCode < 600)
+			console.log("Request error for URL " + _path);
+//		console.log('STATUS: ' + );
 //		console.log('HEADERS: ' + JSON.stringify(res.headers));
 		res.setEncoding('utf8');
 		
@@ -39,6 +41,7 @@ exports.call = function(_host, _path, _postData, _callbackSuccess, _callbackErro
 		res.on('end', function()
         {
 //			console.log('BODY: ' + data);
+//			console.log('FOR PATH: ' + _path);
 			_callbackSuccess(data, res.headers);
 		});
 	});
@@ -49,6 +52,7 @@ exports.call = function(_host, _path, _postData, _callbackSuccess, _callbackErro
 	  _callbackError(e);
 	});
 
-	req.write(_postData);
+	if(_postData != null)
+		req.write(_postData);
 	req.end();
 };
