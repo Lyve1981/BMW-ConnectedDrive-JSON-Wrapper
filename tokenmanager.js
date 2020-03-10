@@ -71,7 +71,7 @@ function readTokenData(data, _success, _error)
 
     if(typeof(json.token_type) === 'undefined' || typeof(json.access_token) === 'undefined')
     {
-        _error("Couldn't find token in response");
+        _error("Couldn't find token in response " + data);
         return;
     }
 
